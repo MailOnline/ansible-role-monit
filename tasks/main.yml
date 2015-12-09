@@ -1,0 +1,26 @@
+- name: Monit APT repository
+  apt_repository:
+    repo: deb http://ppa.launchpad.net/bnrubin/monit/ubuntu trusty main
+    state: present
+- name: Monit configuration directory
+  file:
+    state: directory
+    dest: /etc/monit/conf.d/
+- name: Monit configuration
+  template:
+    src: monitrc.j2
+    dest: /etc/monit/monitrc
+- name: Monit checks
+  copy:
+    src: "{{ monit_checks_file }}"
+    dest: /etc/monit/conf.d/{{ monit_checks_file | basename }}
+- name: Install Monit
+  apt:
+    force: yes
+    update_cache: yes
+    name: monit
+    state: present
+- name: Run Monit
+  service:
+    name: monit
+    state: reloaded

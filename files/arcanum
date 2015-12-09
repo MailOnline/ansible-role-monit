@@ -1,0 +1,32 @@
+check process arcanum with pidfile /var/run/arcanum.pid
+  start program = "/sbin/start arcanum"
+  stop program = "/sbin/stop arcanum"
+
+  if changed pid then alert
+
+  if
+    failed
+    port 3000
+    protocol http
+    request "/v2/ranked-articles"
+    content = "publicationDate"
+    timeout 30 seconds
+    then alert
+
+  if
+    failed
+    port 3000
+    protocol http
+    request "/v2/ranked-tweets"
+    content = "tweetId"
+    timeout 30 seconds
+    then alert
+
+  if
+    failed
+    port 3000
+    protocol http
+    request "/v2/ranked-newswhip-articles"
+    content = "publicationDate"
+    timeout 30 seconds
+    then alert

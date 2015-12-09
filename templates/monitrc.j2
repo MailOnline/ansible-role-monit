@@ -1,0 +1,15 @@
+set daemon 60
+set logfile /var/log/monit.log
+set idfile /var/lib/monit/id
+set statefile /var/lib/monit/state
+
+set eventqueue basedir /var/lib/monit/events slots 100
+
+set httpd port 2812 allow monit:monit
+
+set mailserver "{{smtp_server}}"
+set alert Dmitry.Dzhus@mailonline.co.uk
+set alert Pavel.Kogan@mailonline.co.uk but not on {instance}
+set alert Panos.Albanis@mailonline.co.uk but not on {instance}
+
+include /etc/monit/conf.d/*
