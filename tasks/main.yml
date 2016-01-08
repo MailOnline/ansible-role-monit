@@ -1,7 +1,12 @@
+- name: Monit APT key
+  apt_key:
+    id: 7B1A50D3B5A35322FFE0BC2BDAFCF825D62EB07F
+    keyserver: hkp://keyserver.ubuntu.com:80
 - name: Monit APT repository
   apt_repository:
-    repo: deb http://ppa.launchpad.net/bnrubin/monit/ubuntu trusty main
+    repo: deb http://ppa.launchpad.net/molindo/ppa/ubuntu trusty main
     state: present
+    update_cache: yes
 - name: Monit configuration directory
   file:
     state: directory
@@ -16,9 +21,7 @@
     dest: /etc/monit/conf.d/{{ monit_checks_file | basename }}
 - name: Install Monit
   apt:
-    force: yes
-    update_cache: yes
-    name: monit
+    name: monit=1:5.15-1~ubuntu14.04.1~ppa1
     state: present
 - name: Run Monit
   service:
