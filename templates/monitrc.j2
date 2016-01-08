@@ -7,7 +7,7 @@ set eventqueue basedir /var/lib/monit/events slots 100
 
 set httpd port 2812 allow monit:monit
 
-set mailserver "{{smtp_server}}"
+set mailserver "{{monit_smtp_server}}"
 {% for rcpt in monit_alert_emails %}
 set alert {{ rcpt }}
 {% endfor %}
