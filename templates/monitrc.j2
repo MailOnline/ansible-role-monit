@@ -8,8 +8,8 @@ set eventqueue basedir /var/lib/monit/events slots 100
 set httpd port 2812 allow monit:monit
 
 set mailserver "{{smtp_server}}"
-set alert Dmitry.Dzhus@mailonline.co.uk
-set alert Pavel.Kogan@mailonline.co.uk but not on {instance}
-set alert Panos.Albanis@mailonline.co.uk but not on {instance}
+{% for rcpt in monit_alert_emails %}
+set alert {{ rcpt }}
+{% endfor %}
 
 include /etc/monit/conf.d/*
