@@ -1,5 +1,0 @@
-check process google-translate-cache with pidfile /var/run/google-translate-cache.pid
-  start program = "/sbin/start google-translate-cache"
-  stop program = "/sbin/stop google-translate-cache"
-
-  if changed pid then alert
