@@ -1,0 +1,11 @@
+---
+galaxy_info:
+  author: Dmitry Dzhus
+  description: Set up monit watchdog with checks for your service
+  company: MailOnline
+  license: BSD
+  min_ansible_version: 1.9
+  platforms:
+  - name: Ubuntu
+    versions:
+    - trusty
