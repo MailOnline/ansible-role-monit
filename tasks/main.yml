@@ -15,15 +15,13 @@
   template:
     src: monitrc.j2
     dest: /etc/monit/monitrc
+  notify: restart monit
 - name: Monit checks
   copy:
     src: "{{ monit_checks_file }}"
     dest: /etc/monit/conf.d/{{ monit_checks_file | basename }}
+  notify: restart monit
 - name: Install Monit
   apt:
     name: monit=1:5.15-1~ubuntu14.04.1~ppa1
     state: present
-- name: Run Monit
-  service:
-    name: monit
-    state: reloaded
