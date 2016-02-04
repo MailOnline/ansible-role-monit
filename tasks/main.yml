@@ -15,9 +15,10 @@
   template:
     src: monitrc.j2
     dest: /etc/monit/monitrc
+    mode: 0700
   notify: restart monit
 - name: Monit checks
-  copy:
+  template:
     src: "{{ monit_checks_file }}"
     dest: /etc/monit/conf.d/{{ monit_checks_file | basename }}
   notify: restart monit
