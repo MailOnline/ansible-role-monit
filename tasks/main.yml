@@ -4,7 +4,7 @@
     keyserver: hkp://keyserver.ubuntu.com:80
 - name: Monit APT repository
   apt_repository:
-    repo: deb http://ppa.launchpad.net/molindo/ppa/ubuntu trusty main
+    repo: deb http://ppa.launchpad.net/molindo/ppa/ubuntu {{ansible_lsb.codename}} main
     state: present
     update_cache: yes
 - name: Monit configuration directory
@@ -24,5 +24,5 @@
   notify: restart monit
 - name: Install Monit
   apt:
-    name: monit=1:5.15-1~ubuntu14.04.1~ppa1
+    name: monit=1:5.15-1*
     state: present
