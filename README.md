@@ -5,17 +5,19 @@ containing [check statements][monit-checks] for your service.
 
 ## Usage
 
-Apply `monit` role to your hosts:
+Apply `MailOnline.monit` role to your hosts:
 
     - hosts: appservers
       roles:
-        - role: monit
+        - role: MailOnline.monit
           monit_checks_file: 'files/monit/my-service'
           monit_alert_emails:
             - somebody@mailonline.co.uk
             - someone.else@mailonline.co.uk
 
 ## Variables
+
+All variables are required.
 
 - `monit_alert_emails`
 - `monit_checks_file`
