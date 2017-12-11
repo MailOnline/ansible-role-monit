@@ -19,8 +19,9 @@
   notify: restart monit
 - name: Monit checks
   template:
-    src: "{{ monit_checks_file }}"
-    dest: /etc/monit/conf.d/{{ monit_checks_file | basename }}
+    src: "{{ item }}"
+    dest: /etc/monit/conf.d/{{ item | basename }}
+  with_items: "{{ monit_checks_file }}"
   notify: restart monit
 - name: Install Monit
   apt:
