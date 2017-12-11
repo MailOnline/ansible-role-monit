@@ -1,3 +1,5 @@
+**Deprecated and unused: use [ANXS.monit](https://github.com/ANXS/monit) instead.**
+
 # monit
 
 Ansible role which sets up [monit][] watchdog with supplied files
